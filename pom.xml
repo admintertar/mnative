@@ -133,7 +133,6 @@
 <!--                            </binding>-->
 
                         </bindings>
-                        <caches>cache-${project.artifactId}</caches>
                         <buildCache>
                             <volume>
                                 <name>cache-${project.artifactId}.build</name>
