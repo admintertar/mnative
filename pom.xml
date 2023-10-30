@@ -24,11 +24,6 @@
             <version>3.0.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.mybatis.spring.native</groupId>
-            <artifactId>mybatis-spring-native-core</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -110,6 +105,16 @@
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
+                <configuration>
+                    <buildArgs combine.children="append">
+                        <buildArg>--enable-url-protocols=http</buildArg>
+                        <buildArg>--pull-policy=if-not-present</buildArg>
+                        <buildArg>--no-fallback</buildArg>
+                    </buildArgs>
+                    <jvmArgs>
+                        <arg>-Djavax.xml.accessExternalDTD=all</arg>
+                    </jvmArgs>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -127,6 +132,20 @@
 <!--                            </binding>-->
 
                         </bindings>
+                        <buildCache>
+                            <volume>
+                                <name>cache-${project.artifactId}.build</name>
+                            </volume>
+                        </buildCache>
+                        <launchCache>
+                            <volume>
+                                <name>cache-${project.artifactId}.launch</name>
+                            </volume>
+                        </launchCache>
+                        <env>
+                            <BP_JVM_VERSION>17</BP_JVM_VERSION>
+                            <BPE_APPEND_JAVA_TOOL_OPTIONS>-Djavax.xml.accessExternalDTD=all -XX:+HeapDumpOnOutOfMemoryError</BPE_APPEND_JAVA_TOOL_OPTIONS>
+                        </env>
                     </image>
                     <excludes>
                         <exclude>

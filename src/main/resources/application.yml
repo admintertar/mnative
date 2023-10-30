@@ -22,7 +22,7 @@ spring:
     nacos:
       discovery:
         register-enabled: true
-        server-addr: ${NACOS_SERVER_ADDR:10.68.220.16:8848}
+        server-addr: ${NACOS_SERVER_ADDR:10.68.220.19:8848}
         username: ${NACOS_USERNAME:nacos}
         password: ${NACOS_PASSWORD:nacos}
         namespace:
@@ -36,4 +36,4 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
