@@ -121,6 +121,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
+                        <pullPolicy>IF_NOT_PRESENT</pullPolicy>
                         <bindings>
                             <!-- 这个是由于 github 直接下载文件很慢,可能会导致 timeout,重新定义 bindings 文件 -->
                             <binding>
@@ -132,6 +133,7 @@
 <!--                            </binding>-->
 
                         </bindings>
+                        <caches>cache-${project.artifactId}</caches>
                         <buildCache>
                             <volume>
                                 <name>cache-${project.artifactId}.build</name>
